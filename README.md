@@ -96,5 +96,5 @@ What you should learn from this project:
 
  * **Amanuel Kebede**
  - [GitHub](https://github.com/)
- - [Linkedin](https://www.linkedin.com/)
- - [Twitter](https://twitter.com/)
+ - [Linkedin](https://www.linkedin.com/in/amanuelkebede)
+ - [Twitter](https://twitter.com/amanuelkebede6)
