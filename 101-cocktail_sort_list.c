@@ -1,83 +1,64 @@
 #include "sort.h"
-#include <stdio.h>
-
-Authors: Jerrica Jackson, Amanuel Kebede
 
 /**
- * swap_consec_node - orders linked list with insertion
- * @temp: current pointer to list
- * @list: doble pointer to head
- * Return: swaps two consecutive nodes
+ * swap - swaps two nodes
+ * @head: head of the list
+ * @node1: first node to sort
+ * @node2: second node to sort
  */
-void swap_consec_node(listint_t *temp, listint_t **list)
+void swap(listint_t **head, listint_t *node1, listint_t *node2)
 {
-	listint_t *uno, *uno_next, *uno_prev = NULL;
-	listint_t *dos, *dos_next = NULL, *dos_prev;
+	listint_t *prev, *next;
 
-	uno = temp;
-	dos = temp->next;
-	uno_next = uno->next;
-	if (uno->prev)
-		uno_prev = uno->prev;
+	prev = node1->prev;
+	next = node2->next;
+
+	if (prev != NULL)
+		prev->next = node2;
 	else
-		uno_prev = NULL;
-	if (dos->next)
-		dos_next = dos->next;
-	else
-		dos_next = NULL;
-	dos_prev = dos->prev;
-	if (uno_prev)
-		uno_prev->next = uno_next;
-	else
-		*list = dos;
-	if (dos_next)
-		dos_next->prev = dos_prev;
-	uno->next = dos_next;
-	uno->prev = dos;
-	dos->next = uno;
-	dos->prev = uno_prev;
+		*head = node2;
+	node1->prev = node2;
+	node1->next = next;
+	node2->prev = prev;
+	node2->next = node1;
+	if (next)
+		next->prev = node1;
 }
 /**
- * cocktail_sort_list - orders dlinked list with cocktail sort algo
- * @list: head of double linked list
- * Return: prints list on each swap
+ * cocktail_sort_list - sorts a list using the cocktail sort algorithm
+ * @list: list to sort
  */
 void cocktail_sort_list(listint_t **list)
 {
-	int swap = 1;
-	listint_t *temp = *list;
+	listint_t *head;
+	int flag = 0;
 
-	if (!list)
+	if (!list || !*list || !(*list)->next)
 		return;
-	while (swap)
-	{
-		swap = 0;
-		while (temp->next)
-		{
-			if (temp->n > temp->next->n)
-			{
-				swap_consec_node(temp, list);
-				temp = temp->prev;
-				swap = 1;
-				if (temp->n != temp->next->n)
-					print_list(*list);
-			}
-			temp = temp->next;
-		}
-		temp = temp->prev;
 
-		while (temp->prev)
+	do {
+		for (head = *list; head->next != NULL; head = head->next)
 		{
-			if (temp->prev->n > temp->n)
+			if (head->n > head->next->n)
 			{
-				swap_consec_node(temp->prev, list);
-				temp = temp->next;
-				swap = 1;
-				if (temp->prev->n != temp->n)
-					print_list(*list);
+				swap(list, head, head->next);
+				print_list(*list);
+				flag = 1;
+				head = head->prev;
 			}
-			temp = temp->prev;
 		}
-		temp = temp->next;
-	}
+		if (flag == 0)
+			break;
+		flag = 0;
+		for (; head->prev != NULL; head = head->prev)
+		{
+			if (head->n < head->prev->n)
+			{
+				swap(list, head->prev, head);
+				print_list(*list);
+				flag = 1;
+				head = head->next;
+			}
+		}
+	} while (flag == 1);
 }
