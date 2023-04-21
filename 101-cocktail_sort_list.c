@@ -1,5 +1,7 @@
 #include "sort.h"
 
+Authors: Jerrica Jackson, Amanuel Kebede
+
 /**
  * swap - swaps two nodes
  * @head: head of the list
