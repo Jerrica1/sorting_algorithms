@@ -1,47 +1,78 @@
 #include "sort.h"
-Authors: Jerrica Jackson, Amanuel Kebede
+#include <stdio.h>
 /**
- * insertion_sort_list - function that sorts a doubly linked list
- * of integers in ascending order using the Insertion sort algorithm
- * @list: Dobule linked list to sort
+ * swap_consec_node - orders linked list with insertion
+ * @temp: current pointer to list
+ * @list: doble pointer to head
+ * Return: swaps two consecutive nodes
+ */
+void swap_consec_node(listint_t *temp, listint_t **list)
+{
+	listint_t *uno, *uno_next, *uno_prev = NULL;
+	listint_t *dos, *dos_next = NULL, *dos_prev;
+
+	uno = temp;
+	dos = temp->next;
+	uno_next = uno->next;
+	if (uno->prev)
+		uno_prev = uno->prev;
+	else
+		uno_prev = NULL;
+	if (dos->next)
+		dos_next = dos->next;
+	else
+		dos_next = NULL;
+	dos_prev = dos->prev;
+	if (uno_prev)
+		uno_prev->next = uno_next;
+	else
+		*list = dos;
+	if (dos_next)
+		dos_next->prev = dos_prev;
+	uno->next = dos_next;
+	uno->prev = dos;
+	dos->next = uno;
+	dos->prev = uno_prev;
+}
+/**
+ * insertion_sort_list - orders linked list with insertion
+ * @list: doble pointer to node list
+ * Return: linked list ordered
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *node;
+	listint_t *temp, *temp_rev;
+	int flag = 0, flag_rev = 0;
 
-	if (list == NULL || (*list)->next == NULL)
+	if (!list)
 		return;
-	node = (*list)->next;
-	while (node)
+	temp = *list;
+	while (temp->next)
 	{
-		while ((node->prev) && (node->prev->n > node->n))
+		if (temp->n > temp->next->n)
 		{
-			node = swap_node(node, list);
+			swap_consec_node(temp, list);
 			print_list(*list);
-		}
-		node = node->next;
-	}
-}
-/**
- *swap_node - swap a node for his previous one
- *@node: node
- *@list: node list
- *Return: return a pointer to a node which was enter it
- */
-listint_t *swap_node(listint_t *node, listint_t **list)
-{
-	listint_t *back = node->prev, *current = node;
-	/*NULL, 19, 48, 9, 71, 13, NULL*/
+			flag = 1;
+			temp_rev = temp->prev;
 
-	back->next = current->next;
-	if (current->next)
-		current->next->prev = back;
-	current->next = back;
-	current->prev = back->prev;
-	back->prev = current;
-	if (current->prev)
-		current->prev->next = current;
-	else
-		*list = current;
-	return (current);
+			while (temp_rev->prev)
+			{
+				if (temp_rev->prev->n > temp_rev->n)
+				{
+					swap_consec_node(temp_rev->prev, list);
+					print_list(*list);
+					flag_rev = 1;
+				}
+				else
+					break;
+				if (!flag_rev)
+					temp_rev = temp_rev->prev;
+				flag_rev = 0;
+			}
+		}
+		if (!flag)
+		temp = temp->next;
+		flag = 0;
+	}
 }
