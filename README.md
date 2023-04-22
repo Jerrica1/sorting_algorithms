@@ -9,7 +9,7 @@ Read or watch:
 * [Data Structures - Asymptotic Analysis](https://www.tutorialspoint.com/data_structures_algorithms/asymptotic_analysis.htm)
 * [RANDOM.ORG - Integer Set Generator](https://www.random.org/integer-sets/)
 * [Sorting algorithm](https://en.wikipedia.org/wiki/Sorting_algorithm#Classification)
-* [algorithm - What is a plain English explanation of "Big O" notation?](https://stackoverflow.com/questions/487258/what-is-a-plain-english-explanation-of-big-o-notation)
+* [Algorithm - What is a plain English explanation of "Big O" notation?](https://stackoverflow.com/questions/487258/what-is-a-plain-english-explanation-of-big-o-notation)
 * [What is the time complexity of indexing, inserting and removing from common data structures?](https://stackoverflow.com/questions/122799/what-is-the-time-complexity-of-indexing-inserting-and-removing-from-common-data)
 * [Sorting Algorithms Animations](https://www.toptal.com/developers/sorting-algorithms)
 * [Sorting Algorithms BigPicture](https://www.youtube.com/watch?v=RLuBLU_NgaA)
