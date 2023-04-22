@@ -2,91 +2,48 @@
 
 /**
  * counting_sort - counting sort algorithm
- * @array: array of integers
- * @size: size of array
+ * @array: array to be sorted
+ * @size: size of the array to be sorted
  */
 void counting_sort(int *array, size_t size)
 {
-	int index;
-	size_t i, j, largest_num;
-	count_t *count_array = NULL;
-	int *output = NULL;
+	int i, max;
+	int *count = NULL, *copy = NULL;
+	size_t j, temp, total = 0;
 
-	if (size < 2)
+	if (array == NULL || size < 2)
 		return;
-	largest_num = largest_number(array, size);
-	count_array = malloc(sizeof(count_t) * (largest_num + 1));
-	if (count_array == NULL)
+	copy = malloc(sizeof(int) * size);
+	if (copy == NULL)
 		return;
-	output = malloc(sizeof(int) * size);
-	if (output == NULL)
+	for (j = 0, max = 0; j < size; j++)
+	{
+		copy[j] = array[j];
+		if (array[j] > max)
+			max = array[j];
+	}
+	count = malloc(sizeof(int) * (max + 1));
+	if (count == NULL)
+	{
+		free(copy);
 		return;
-	/* initialize and set counting array */
-	for (i = 0; i <= largest_num; i++)
-	{
-		count_array[i].num = i;
-		count_array[i].count = 0;
 	}
-	for (i = 0; i < size; i++)
-
+	for (i = 0; i <= max; i++)
+		count[i] = 0;
+	for (j = 0; j < size; j++)
+		count[array[j]] += 1;
+	for (i = 0; i <= max; i++)
 	{
-		j = array[i];
-		count_array[j].count += 1;
+		temp = count[i];
+		count[i] = total;
+		total += temp;
 	}
-	/* sum and print counting array */
-	for (i = 1; i <= largest_num; i++)
-		count_array[i].count = count_array[i].count + count_array[i - 1].count;
-	print_struct(count_array, largest_num);
-	/* create output array and set sorted array */
-	for (i = 0; i < size; i++)
+	for (j = 0; j < size; j++)
 	{
-		j = array[i];
-		index = count_array[j].count - 1;
-		count_array[j].count--;
-		output[index] = array[i];
+		array[count[copy[j]]] = copy[j];
+		count[copy[j]] += 1;
 	}
-	for (i = 0; i < size; i++)
-		array[i] = output[i];
-	free(output), free(count_array);
-}
-
-/**
- * largest_number - fuinds the largest number in an array
- * @array: array of integers
- * @size: size of array
- * Return: largest number
- */
-size_t largest_number(int *array, size_t size)
-{
-	size_t i;
-	int largest = array[0];
-
-	for (i = 0; i < size; i++)
-	{
-		if (array[i] > largest)
-			largest = array[i];
-	}
-
-	return (largest);
-}
-
-/**
- * print_struct - prints a struct
- * @counting_struct: struct
- * @largest_num: largest nnumber
- */
-void print_struct(count_t *counting_struct, size_t largest_num)
-{
-	int *array;
-	size_t i;
-
-	array = malloc(sizeof(int) * (largest_num + 1));
-	if (array == NULL)
-		return;
-
-	for (i = 0; i <= largest_num; i++)
-		array[i] = counting_struct[i].count;
-
-	print_array(array, largest_num + 1);
-	free(array);
+	print_array(count, max + 1);
+	free(count);
+	free(copy);
 }
