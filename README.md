@@ -13,16 +13,6 @@ Read or watch:
 * [What is the time complexity of indexing, inserting and removing from common data structures?](https://stackoverflow.com/questions/122799/what-is-the-time-complexity-of-indexing-inserting-and-removing-from-common-data)
 * [Sorting Algorithms Animations](https://www.toptal.com/developers/sorting-algorithms)
 * [Sorting Algorithms BigPicture](https://www.youtube.com/watch?v=RLuBLU_NgaA)
-* [algoritmos de ordenamiento](https://www.youtube.com/results?search_query=algoritmos+de+ordenamiento)
-* [ALGORITMOS - METODOS DE ORDENAMIENTO](https://www.youtube.com/watch?v=VJ_EUuURRg4)
-* [¿Qué es la complejidad algorítmica y con qué se come?](https://medium.com/@joseguillermo_/qu%C3%A9-es-la-complejidad-algor%C3%ADtmica-y-con-qu%C3%A9-se-come-2638e7fd9e8c)
-* [Big O notation](https://en.wikipedia.org/wiki/Big_O_notation)
-* [Análisis de la complejidad de los algoritmos](https://www.cs.us.es/~jalonso/cursos/i1m/temas/tema-28.html)
-* [Rendimiento de algoritmos y notación Big-O](https://www.campusmvp.es/recursos/post/Rendimiento-de-algoritmos-y-notacion-Big-O.aspx)
-* [Big-O is easy to calculate, if you know how](https://justin.abrah.ms/computer-science/how-to-calculate-big-o.html)
-* [8 time complexities that every programmer should know](https://adrianmejia.com/most-popular-algorithms-time-complexity-every-programmer-should-know-free-online-tutorial-course/#Binary-search)
-
-
 
 ---
 ## Learning Objectives:bulb:
